@@ -1,20 +1,26 @@
-# Agents Governance
+# Agent Governance
 
-## System Role
-This project implements a modular RAG-based AI agent using LangChain, Pinecone, and OpenAI. The architecture follows separation of concerns between retrieval, generation, and orchestration.
+## System Overview
+This project implements a modular Retrieval-Augmented Generation (RAG) AI agent using:
+- OpenAI (LLM)
+- LangChain (Orchestration)
+- Pinecone (Vector Storage)
+- LangSmith (Observability)
 
-## Architectural Rules
-- Retrieval must be isolated from generation logic.
-- Vector operations must be abstracted via vectorstore layer.
-- No business logic inside prompt templates.
-- All prompts must be versioned inside /prompts directory.
+## Architecture Rules
+- Retrieval logic must be isolated from generation logic.
+- No direct LLM calls outside agent layer.
+- Prompts must live in /prompts directory.
+- Vector operations must go through vectorstore abstraction.
 
-## Agent Behavior Constraints
-- Always prefer retrieved context over model memory.
-- If retrieval confidence is low, fallback to direct LLM.
-- Responses must cite document chunks when applicable.
+## Agent Behavior
+- Always attempt retrieval first.
+- If similarity score < threshold, fallback to direct LLM.
+- Cite document context when used.
+- Avoid hallucination when context exists.
 
-## Coding Constraints
-- Follow clean architecture.
-- Use dependency injection for LLM and vectorstore.
-- Avoid hardcoded API keys.
+## Coding Standards
+- Use TypeScript strictly.
+- No hardcoded secrets.
+- Follow dependency injection pattern.
+- Modular design only.

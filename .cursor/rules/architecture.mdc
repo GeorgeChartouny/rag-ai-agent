@@ -18,13 +18,15 @@ Never mix retrieval logic with response formatting.
 
 This project is a RAG (Retrieval-Augmented Generation) AI agent. Components are organized as follows:
 
-- **app/agents** – Agent orchestration and reasoning
-- **app/chains** – Reusable LLM chains
-- **app/tools** – Tools agents can call
-- **app/embeddings** – Embedding models and utilities
-- **app/vectorstore** – Vector store and retrieval
-- **app/prompts** – Prompt templates
-- **app/utils** – Shared utilities
+- **app/agents** – Agent orchestration (e.g. ragAgent.ts)
+- **app/chains** – Reusable LLM chains (e.g. retrievalChain.ts)
+- **app/embeddings** – Embedding utilities (embedder.ts)
+- **app/vectorstore** – Vector store / Pinecone (pineconeClient.ts)
+- **app/ingestion** – PDF processing (pdfProcessor.ts)
+- **app/prompts** – Prompt templates (systemPrompt, ragPrompt)
+- **app/routes** – API routes (upload, chat)
+- **app/config** – Env and config (env.ts)
+- **app/observability** – LangSmith (langsmith.ts)
 
 ## Data Flow
 

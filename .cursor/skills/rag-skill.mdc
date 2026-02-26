@@ -43,6 +43,6 @@ Use this skill when implementing or refining retrieval-augmented generation: chu
 
 ## Actions
 
-- Prefer existing **app/embeddings** and **app/vectorstore** APIs when adding or changing RAG behavior.
+- Prefer existing **src/embeddings** and **src/vectorstore** APIs when adding or changing RAG behavior.
 - Add or update prompts under **app/prompts/** and reference them from chains/agents.
 - Ensure new retrieval paths are covered by tests under **tests/**.

@@ -30,29 +30,29 @@ Response
 
 ```
 app/
-  agents/     # AI agent definitions and orchestration
-  chains/     # Reusable LLM chains
-  tools/      # Agent tools (search, calculators, etc.)
-  embeddings/ # Embedding models and utilities
-  vectorstore/ # Vector store and retrieval logic
-  prompts/    # Prompt templates
-  utils/      # Shared utilities
+  agents/        # RAG agent orchestration (ragAgent.ts)
+  chains/        # Retrieval chain (retrievalChain.ts)
+  embeddings/    # Embedder (embedder.ts)
+  vectorstore/   # Pinecone client (pineconeClient.ts)
+  ingestion/     # PDF processor (pdfProcessor.ts)
+  prompts/       # systemPrompt.ts, ragPrompt.ts
+  observability/ # LangSmith (langsmith.ts)
+  routes/        # upload.ts, chat.ts
+  config/        # env.ts
+  main.ts        # Entry point
 
-data/
-  uploads/    # User-uploaded documents for RAG
-
-tests/        # Unit and integration tests
+data/uploads/    # User-uploaded documents for RAG
 ```
 
 ## Setup
 
-1. Install dependencies:
+1. Install dependencies (from repo root):
 
    ```bash
    npm install
    ```
 
-2. Copy `.env.example` to `.env` and fill in your API keys and settings:
+2. Copy `.env.example` to `.env` and fill in your API keys:
 
    ```bash
    cp .env.example .env
@@ -64,11 +64,7 @@ tests/        # Unit and integration tests
    npm start
    ```
 
-   Or run directly with Node:
-
-   ```bash
-   node index.js
-   ```
+   Or build then run: `npm run build` then `node dist/main.js`.
 
 ## Configuration
 

@@ -1,0 +1,22 @@
+---
+description: Skill for implementing and using LLM tool-calling in the RAG agent
+---
+
+# Tool-Calling Skill
+
+When the agent needs to call tools (search, calculator, API, etc.):
+
+1. Define tools with clear names and descriptions for the LLM.
+2. Use structured input/output (e.g. JSON schema) where possible.
+3. Handle errors and timeouts; return clear messages to the agent.
+4. Keep tools in **app/tools/** or **app/agents**; orchestrate from the agent layer.
+
+## When to use
+
+Use when adding or changing agent tools: defining tool schemas, implementing tool handlers, or wiring tool calls into the LangChain/orchestration layer.
+
+## Knowledge
+
+- Tools should be deterministic and side-effect-free where possible; document side effects (e.g. API calls).
+- Validate tool inputs; return structured or clear error messages.
+- Prefer dependency injection so tools can be mocked in tests.

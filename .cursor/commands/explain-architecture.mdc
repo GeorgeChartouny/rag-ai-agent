@@ -8,6 +8,6 @@ When the user asks to explain the architecture (or "how does this project work?"
 
 1. **Reference** the layout in **.cursor/rules/architecture.mdc** and **README.md**.
 2. **Walk through** the flow: user input → agent → retrieval (if needed) → tools (if needed) → chain → response.
-3. **Point to** key directories: **app/agents**, **app/chains**, **app/tools**, **app/embeddings**, **app/vectorstore**, **app/prompts**, **app/utils**.
-4. **Mention** **agents.md** for agent-specific documentation and **data/uploads** for document input.
+3. **Point to** key directories under **app/**: agents, chains, embeddings, vectorstore, ingestion, prompts, routes, config, observability.
+4. **Mention** **agents.md** for agent governance and **data/uploads** for document input.
 5. Keep the explanation concise; offer to go deeper on a specific layer (e.g. retrieval, prompts, or agents) if the user wants.
