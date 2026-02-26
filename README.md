@@ -1,6 +1,6 @@
 # RAG AI Agent
 
-A Retrieval-Augmented Generation (RAG) AI agent application using LangChain, OpenAI, and Pinecone.
+A **Node.js** Retrieval-Augmented Generation (RAG) AI agent using LangChain, OpenAI, and Pinecone.
 
 ## Pipeline
 
@@ -46,12 +46,10 @@ tests/        # Unit and integration tests
 
 ## Setup
 
-1. Create a virtual environment and install dependencies:
+1. Install dependencies:
 
    ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   pip install -r requirements.txt
+   npm install
    ```
 
 2. Copy `.env.example` to `.env` and fill in your API keys and settings:
@@ -63,7 +61,13 @@ tests/        # Unit and integration tests
 3. Run the application:
 
    ```bash
-   python main.py
+   npm start
+   ```
+
+   Or run directly with Node:
+
+   ```bash
+   node index.js
    ```
 
 ## Configuration
@@ -72,5 +76,5 @@ See `.env.example` for required environment variables (OpenAI API key, Pinecone,
 
 ## Development
 
-- Run tests: `pytest tests/`
+- Run tests: `npm test`
 - Agent and architecture notes: see `agents.md`

@@ -1,31 +1,31 @@
 ---
 description: Coding standards and style for the RAG AI agent codebase
-globs: app/**/*.py, tests/**/*.py
+globs: app/**/*.js, tests/**/*.js, *.js
 alwaysApply: false
 ---
 
 # Coding Standards
 
-## Python
+## JavaScript / Node
 
-- Use **Python 3.10+**.
-- Prefer type hints for public functions and class methods.
-- Use a consistent formatter (e.g. Black) and linter (e.g. Ruff or flake8).
-- Docstrings: use a consistent style (e.g. Google or NumPy) for modules, classes, and public functions.
+- Use **Node.js 18+** (LTS).
+- Prefer `const`/`let`; avoid `var`.
+- Use a consistent formatter (e.g. Prettier) and linter (e.g. ESLint).
+- JSDoc for public functions and modules where it helps.
 
 ## Structure
 
 - One main responsibility per module; split large modules by domain or layer.
 - Prefer small, testable functions; inject dependencies rather than importing singletons where it helps testing.
-- Keep **app/** free of side effects at import time; initialize config and clients in a main or factory.
+- Keep **app/** free of side effects at import time; initialize config and clients in the entry point or a factory.
 
 ## Tests
 
 - Tests live under **tests/**; mirror **app/** structure where useful.
-- Use pytest; prefer fixtures for shared setup (e.g. in-memory vector store, mock LLM).
-- Name test files `test_*.py` and test functions `test_*`.
+- Use a Node test runner (e.g. Jest, Vitest, or Node's built-in test runner); prefer fixtures for shared setup (e.g. in-memory vector store, mock LLM).
+- Name test files `*.test.js` or `*.spec.js`.
 
 ## Imports
 
-- Use absolute imports from the project root (e.g. `from app.tools import ...`).
+- Use ES modules (`import`/`export`) or CommonJS (`require`/`module.exports`) consistently across the project.
 - Avoid circular imports; use dependency injection or lazy imports if needed.
