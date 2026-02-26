@@ -1,6 +1,30 @@
 # RAG AI Agent
 
-A Retrieval-Augmented Generation (RAG) AI agent application.
+A Retrieval-Augmented Generation (RAG) AI agent application using LangChain, OpenAI, and Pinecone.
+
+## Pipeline
+
+**Ingestion (indexing documents):**
+
+```
+User → Upload PDF
+       ↓
+Chunking → Embedding → Pinecone
+```
+
+**Query (chat):**
+
+```
+User Chat Query
+       ↓
+Retriever (Top-K)
+       ↓
+Orchestrator (LangChain)
+       ↓
+LLM (OpenAI)
+       ↓
+Response
+```
 
 ## Structure
 
@@ -44,7 +68,7 @@ tests/        # Unit and integration tests
 
 ## Configuration
 
-See `.env.example` for required environment variables (e.g., OpenAI API key, vector store URL).
+See `.env.example` for required environment variables (OpenAI API key, Pinecone, LangSmith, etc.).
 
 ## Development
 
