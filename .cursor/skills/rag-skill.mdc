@@ -1,0 +1,48 @@
+---
+description: Skill for implementing and improving RAG (retrieval-augmented generation) flows
+---
+
+# RAG Skill
+
+When implementing retrieval:
+1. Chunk documents using semantic boundaries.
+2. Generate embeddings via OpenAI.
+3. Store in Pinecone with metadata.
+4. Retrieve top-k matches.
+5. Inject into system prompt using clear delimiters.
+
+## When to use
+
+Use this skill when implementing or refining retrieval-augmented generation: chunking, embedding, indexing, retrieval, and context assembly.
+
+## Knowledge
+
+### Chunking
+
+- Chunk documents with overlap to preserve context at boundaries.
+- Consider semantic boundaries (paragraphs, sections) and max token limits for the embedding model.
+- Store chunk metadata (source, page, section) for citations.
+
+### Embeddings
+
+- Use a single embedding model for both indexing and query encoding.
+- Normalize or use the same similarity metric (e.g. cosine) in the vector store.
+- Embedding module: **app/embeddings/**.
+
+### Vector store
+
+- Index chunks with metadata; support filtering by source or metadata when relevant.
+- Tune top-k and score thresholds to balance recall and precision.
+- Vector store logic: **app/vectorstore/**.
+
+### Context assembly
+
+- Concatenate retrieved chunks in a clear order (e.g. by score or position).
+- Respect context window limits; truncate or summarize if needed.
+- Pass assembled context into prompts in **app/prompts/**.
+
+## Actions
+
+- Prefer existing **app/embeddings** and **app/vectorstore** APIs when adding or changing RAG behavior.
+- Add or update prompts under **app/prompts/** and reference them from chains/agents.
+- Ensure new retrieval paths are covered by tests under **tests/**.

@@ -1,0 +1,27 @@
+---
+description: Subagent responsible for retrieval: chunking, embedding, and vector search
+---
+
+# RAG Retriever Subagent
+
+## Role
+
+This subagent handles everything related to **retrieval** in the RAG pipeline: document ingestion, chunking, embedding, indexing, and query-time retrieval.
+
+## Scope
+
+- **app/embeddings/** – embedding model selection, encoding, batch handling
+- **app/vectorstore/** – index build/update, similarity search, metadata filtering
+- Chunking strategy (size, overlap, boundaries) and storage of chunk metadata
+- Integration points for **app/agents** and **app/chains** (e.g. a `retrieve(query, top_k)` API)
+
+## Out of scope
+
+- LLM calls for answer generation (see **answer-generator** subagent)
+- Agent orchestration or tool choice
+- End-user API or CLI (handled in main/app layer)
+
+## Outputs
+
+- Retrieval API used by chains/agents: e.g. `retrieve(query, top_k, filter?)` returning ranked chunks with metadata.
+- Index build/update pipelines for **data/uploads/** or other document sources.

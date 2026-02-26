@@ -1,0 +1,17 @@
+---
+description: Command to improve or iterate on a prompt used in the RAG agent
+---
+
+# Improve Prompt
+
+When the user asks to improve a prompt (or "make this prompt better", "refine the system prompt"):
+
+1. **Locate** the prompt: check **app/prompts/** and any inline prompts in **app/chains/** or **app/agents/**.
+2. **Apply** guidelines from **.cursor/rules/prompting.mdc**: clarity, structure (instructions vs context vs query), citation/grounding, and "I don't know" behavior.
+3. **Propose** a concrete new version (or diff) with:
+   - Clear role and task
+   - Explicit output format
+   - Placeholders for context and user query where applicable
+   - One or two few-shot examples if the task is format-sensitive
+4. **Suggest** where to store the updated prompt (same file in **app/prompts/** or a new template) and how to reference it in code.
+5. Optionally suggest a small test or manual check to validate the improvement.

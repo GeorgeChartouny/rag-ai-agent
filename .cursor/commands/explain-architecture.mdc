@@ -1,0 +1,13 @@
+---
+description: Command to explain the project architecture and how components fit together
+---
+
+# Explain Architecture
+
+When the user asks to explain the architecture (or "how does this project work?", "what's the structure?"):
+
+1. **Reference** the layout in **.cursor/rules/architecture.mdc** and **README.md**.
+2. **Walk through** the flow: user input → agent → retrieval (if needed) → tools (if needed) → chain → response.
+3. **Point to** key directories: **app/agents**, **app/chains**, **app/tools**, **app/embeddings**, **app/vectorstore**, **app/prompts**, **app/utils**.
+4. **Mention** **agents.md** for agent-specific documentation and **data/uploads** for document input.
+5. Keep the explanation concise; offer to go deeper on a specific layer (e.g. retrieval, prompts, or agents) if the user wants.

@@ -1,0 +1,31 @@
+---
+description: Coding standards and style for the RAG AI agent codebase
+globs: app/**/*.py, tests/**/*.py
+alwaysApply: false
+---
+
+# Coding Standards
+
+## Python
+
+- Use **Python 3.10+**.
+- Prefer type hints for public functions and class methods.
+- Use a consistent formatter (e.g. Black) and linter (e.g. Ruff or flake8).
+- Docstrings: use a consistent style (e.g. Google or NumPy) for modules, classes, and public functions.
+
+## Structure
+
+- One main responsibility per module; split large modules by domain or layer.
+- Prefer small, testable functions; inject dependencies rather than importing singletons where it helps testing.
+- Keep **app/** free of side effects at import time; initialize config and clients in a main or factory.
+
+## Tests
+
+- Tests live under **tests/**; mirror **app/** structure where useful.
+- Use pytest; prefer fixtures for shared setup (e.g. in-memory vector store, mock LLM).
+- Name test files `test_*.py` and test functions `test_*`.
+
+## Imports
+
+- Use absolute imports from the project root (e.g. `from app.tools import ...`).
+- Avoid circular imports; use dependency injection or lazy imports if needed.

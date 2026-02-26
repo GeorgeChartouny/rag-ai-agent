@@ -1,0 +1,17 @@
+{
+  "name": "rag-ai-agent",
+  "version": "1.0.0",
+  "description": "RAG (Retrieval-Augmented Generation) AI agent",
+  "scripts": {
+    "start": "python main.py",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": ["rag", "langchain", "openai", "pinecone"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pinecone-database/pinecone": "^7.1.0",
+    "langchain": "^1.2.28",
+    "openai": "^6.25.0"
+  }
+}

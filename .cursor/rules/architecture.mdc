@@ -1,0 +1,38 @@
+---
+description: High-level architecture and design decisions for the RAG AI agent
+globs: 
+alwaysApply: false
+---
+
+## Architecture Rule
+
+All new features must follow modular layering:
+- Input Layer
+- Retrieval Layer
+- Orchestration Layer
+- Generation Layer
+
+Never mix retrieval logic with response formatting.
+
+## Overview
+
+This project is a RAG (Retrieval-Augmented Generation) AI agent. Components are organized as follows:
+
+- **app/agents** – Agent orchestration and reasoning
+- **app/chains** – Reusable LLM chains
+- **app/tools** – Tools agents can call
+- **app/embeddings** – Embedding models and utilities
+- **app/vectorstore** – Vector store and retrieval
+- **app/prompts** – Prompt templates
+- **app/utils** – Shared utilities
+
+## Data Flow
+
+1. User input → agent
+2. Agent may call retrieval (vectorstore) and/or tools
+3. Retrieved context + tools output → chain → response
+
+## Conventions
+
+- Prefer dependency injection for LLM, embeddings, and vector store so they can be swapped or mocked.
+- Keep retrieval and generation concerns separate; compose them in agents/chains.

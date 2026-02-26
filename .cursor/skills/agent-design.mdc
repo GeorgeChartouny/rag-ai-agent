@@ -1,0 +1,39 @@
+---
+description: Skill for designing and implementing AI agents (tools, reasoning, orchestration)
+---
+
+# Agent Design Skill
+
+## When to use
+
+Use this skill when adding or changing agents: tool choice, reasoning loops, and orchestration with chains and retrieval.
+
+## Knowledge
+
+### Agent responsibilities
+
+- **Orchestration**: Decide when to retrieve, call tools, or respond directly.
+- **Tool use**: Call tools with correct arguments; handle errors and timeouts.
+- **Context**: Combine user input, retrieved context, and tool results into a coherent response.
+
+### Tools
+
+- Define tools under **app/tools/** with clear names and descriptions for the LLM.
+- Tools should be deterministic and side-effect-free where possible; document side effects (e.g. API calls).
+- Validate inputs and return structured output or clear error messages.
+
+### Chains
+
+- Reusable sequences live in **app/chains/**; agents compose chains and tools.
+- Prefer small chains that do one thing; combine in the agent layer.
+
+### Prompts
+
+- System prompts define agent behavior and tool-use instructions.
+- Use **app/prompts/** for templates; see **prompting.mdc** for guidelines.
+
+## Actions
+
+- Add or modify agents in **app/agents/**; document in **agents.md**.
+- Register new tools in **app/tools/** and expose them to the agent.
+- Keep reasoning loops simple and testable; add tests under **tests/**.

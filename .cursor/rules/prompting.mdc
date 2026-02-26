@@ -1,0 +1,30 @@
+---
+description: Guidelines for writing and evolving prompts in the RAG agent
+globs: app/prompts/**/*
+alwaysApply: false
+---
+
+
+## Prompting
+
+- Always separate system and user prompts.
+- Use structured output when possible.
+- Avoid vague instructions.
+- Use retrieval injection with delimiters.
+
+## Principles
+
+- **Be explicit**: State the role, task, and expected output format.
+- **Include few-shot examples** when the task is nuanced or format-sensitive.
+- **Separate system vs user**: Use system prompts for behavior; user content for the actual query and context.
+
+## RAG-Specific
+
+- In retrieval-augmented prompts, clearly separate: (1) instructions, (2) retrieved context, (3) user question.
+- Instruct the model to cite or ground answers in the provided context and to say "I don't know" when context is insufficient.
+- Keep prompt templates in **app/prompts/** and reference them by name in code.
+
+## Iteration
+
+- Version prompt changes; consider A/B tests or logging for production.
+- Avoid hardcoding long prompts in application code; use template files or a prompt registry.
