@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev app/main.ts",
     "build": "tsc",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "node -r dotenv/config -r ts-node/register --test tests/embedder.test.ts"
   },
   "keywords": [
     "rag",

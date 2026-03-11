@@ -6,6 +6,11 @@ import 'dotenv/config';
 export const env = {
   nodeEnv: process.env.NODE_ENV ?? 'development',
   openaiApiKey: process.env.OPENAI_API_KEY ?? '',
+  openaiEmbeddingModel: process.env.OPENAI_EMBEDDING_MODEL ?? 'text-embedding-3-small',
+  openaiEmbeddingDimensions: parseInt(
+    process.env.OPENAI_EMBEDDING_DIMENSIONS ?? '1536',
+    10
+  ),
   anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? '',
   pineconeApiKey: process.env.PINECONE_API_KEY ?? '',
   pineconeIndex: process.env.PINECONE_INDEX ?? '',
