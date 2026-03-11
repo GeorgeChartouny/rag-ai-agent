@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev app/main.ts",
     "build": "tsc",
-    "test": "node -r dotenv/config -r ts-node/register --test tests/embedder.test.ts"
+    "test": "node -r dotenv/config -r ts-node/register --test tests/embedder.test.ts tests/vectorstore.test.ts"
   },
   "keywords": [
     "rag",

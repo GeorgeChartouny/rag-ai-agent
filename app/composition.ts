@@ -4,6 +4,7 @@
 import { env } from './config/env';
 import type { IEmbedder, ILLM, IVectorStore } from './abstractions';
 import { createOpenAIEmbedder } from './embeddings/openaiEmbedder';
+import { createPineconeVectorStore } from './vectorstore/pineconeClient';
 import { createStubVectorStore } from './vectorstore/stubVectorStore';
 import { createStubLlm } from './llm/stubLlm';
 
@@ -21,7 +22,15 @@ export function compose(): AppDeps {
     dimensions: env.openaiEmbeddingDimensions,
   });
 
-  const vectorStore = createStubVectorStore();
+  const vectorStore =
+    env.pineconeApiKey && env.pineconeIndex
+      ? createPineconeVectorStore({
+          apiKey: env.pineconeApiKey,
+          indexName: env.pineconeIndex,
+          environment: env.pineconeEnvironment || undefined,
+        })
+      : createStubVectorStore();
+
   const llm = createStubLlm();
   const indexName = env.pineconeIndex;
 
