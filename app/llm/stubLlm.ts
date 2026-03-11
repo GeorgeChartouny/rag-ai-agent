@@ -1,14 +1,12 @@
 /**
  * Stub LLM for Phase 1. Implements ILLM with a fixed placeholder response.
  */
-import type { ILLM } from '../abstractions';
-
-const STUB_RESPONSE = '[LLM not wired yet]';
+import type { ILLM, ChatMessage } from '../abstractions';
 
 export function createStubLlm(): ILLM {
   return {
-    async generate(): Promise<string> {
-      return STUB_RESPONSE;
+    async generate(_messages: ChatMessage[]): Promise<string> {
+      return '[LLM not wired yet]';
     },
   };
 }

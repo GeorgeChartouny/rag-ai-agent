@@ -1,5 +1,6 @@
 /**
- * Abstractions for RAG components. Used for dependency injection.
+ * Abstractions for embedder, vector store, and LLM.
+ * Used for dependency injection and testing.
  */
 
 export interface IEmbedder {
@@ -20,11 +21,7 @@ export interface VectorRecord {
 }
 
 export interface IVectorStore {
-  query(
-    indexName: string,
-    vector: number[],
-    topK: number
-  ): Promise<VectorHit[]>;
+  query(indexName: string, vector: number[], topK: number): Promise<VectorHit[]>;
   upsert(indexName: string, vectors: VectorRecord[]): Promise<void>;
 }
 
