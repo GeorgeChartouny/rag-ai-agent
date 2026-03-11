@@ -4,6 +4,7 @@
  */
 import { Router, Request, Response } from 'express';
 import multer from 'multer';
+import { v4 as uuidv4 } from 'uuid';
 import { processPdf } from '../ingestion/pdfProcessor';
 import type { IEmbedder, IVectorStore } from '../abstractions';
 
@@ -31,8 +32,15 @@ export function createUploadRouter(deps: UploadRouteDeps): Router {
         return;
       }
       const vectors = await deps.embedder.embedDocuments(chunks.map((c) => c.text));
-      // TODO Phase 3: generate IDs (e.g. uuid), build payload, call vectorStore.upsert
-      await deps.vectorStore.upsert(deps.indexName, []);
+      const records = chunks.map((chunk, i) => ({
+        id: uuidv4(),
+        values: vectors[i],
+        metadata: {
+          text: chunk.text,
+          source: chunk.metadata?.source ?? file.originalname,
+        },
+      }));
+      await deps.vectorStore.upsert(deps.indexName, records);
       res.status(200).json({ message: 'PDF processed', chunks: chunks.length });
     } catch (err) {
       res.status(500).json({ error: (err as Error).message });

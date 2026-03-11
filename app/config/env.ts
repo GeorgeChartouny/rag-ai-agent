@@ -11,6 +11,7 @@ export const env = {
     process.env.OPENAI_EMBEDDING_DIMENSIONS ?? '1536',
     10
   ),
+  openaiModel: process.env.OPENAI_MODEL ?? 'gpt-4o-mini',
   anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? '',
   pineconeApiKey: process.env.PINECONE_API_KEY ?? '',
   pineconeIndex: process.env.PINECONE_INDEX ?? '',
