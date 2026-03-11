@@ -39,7 +39,10 @@ describe('chat / RAG agent (Phase 4)', () => {
         '[LLM not wired yet]',
         'answer should not be the placeholder'
       );
-      assert.ok(Array.isArray(result.sources), 'sources should be an array');
+      assert.ok(
+        result.sources === undefined || Array.isArray(result.sources),
+        'sources should be undefined or an array'
+      );
     }
   );
 

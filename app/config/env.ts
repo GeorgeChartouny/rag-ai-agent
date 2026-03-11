@@ -22,4 +22,6 @@ export const env = {
   langsmithApiKey: process.env.LANGSMITH_API_KEY ?? '',
   langsmithProject: process.env.LANGSMITH_PROJECT ?? '',
   port: parseInt(process.env.PORT ?? '3000', 10),
+  /** Minimum similarity score (0–1) for a chunk to be included in response sources. Chunks below this are omitted. */
+  ragMinSourceScore: parseFloat(process.env.RAG_MIN_SOURCE_SCORE ?? '0.5'),
 } as const;

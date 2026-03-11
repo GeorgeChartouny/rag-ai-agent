@@ -1,0 +1,200 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #f5f5f5;
+}
+
+header {
+  padding: 1.5rem 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+main {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+input[type="file"] {
+  font-size: 0.9rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 12rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  background: #0066cc;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #0052a3;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  min-height: 1.25em;
+}
+
+.status.success {
+  color: #0d8050;
+}
+
+.status.error {
+  color: #c00;
+}
+
+.status.loading {
+  color: #555;
+}
+
+.messages {
+  min-height: 8rem;
+  max-height: 24rem;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  max-width: 90%;
+}
+
+.message.user {
+  margin-left: auto;
+  background: #e3f2fd;
+  border: 1px solid #90caf9;
+}
+
+.message.assistant {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+}
+
+.message .content {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.message .sources-toggle {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #0066cc;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #0066cc;
+}
+
+.message .sources-toggle:hover {
+  text-decoration: underline;
+}
+
+.message .sources {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.message .sources summary {
+  cursor: pointer;
+}
+
+.message .sources ul {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.message .sources li {
+  margin-bottom: 0.25rem;
+}
+
+.message.loading .content::after {
+  content: "...";
+  animation: dots 1s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: "."; }
+  40% { content: ".."; }
+  60%, 100% { content: "..."; }
+}
+
+#messages:empty::before {
+  content: "No messages yet. Upload a PDF, then ask a question.";
+  display: block;
+  color: #888;
+  font-size: 0.9rem;
+}

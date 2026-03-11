@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG AI Agent</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h1>RAG AI Agent</h1>
+    <p>Upload a PDF, then ask questions about it.</p>
+  </header>
+
+  <main>
+    <section id="upload-section" class="card">
+      <h2>Upload PDF</h2>
+      <form id="upload-form">
+        <input type="file" id="file-input" name="file" accept="application/pdf" required />
+        <button type="submit" id="upload-btn">Upload</button>
+      </form>
+      <div id="upload-status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section id="chat-section" class="card">
+      <h2>Chat</h2>
+      <div id="messages" class="messages"></div>
+      <form id="chat-form">
+        <input type="text" id="message-input" name="message" placeholder="Ask a question..." autocomplete="off" />
+        <button type="submit" id="send-btn">Send</button>
+      </form>
+      <div id="chat-status" class="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

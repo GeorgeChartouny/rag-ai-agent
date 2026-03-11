@@ -21,7 +21,9 @@ function main(): void {
     deps.vectorStore,
     deps.indexName
   );
-  const invokeRagAgent = createRagAgent(retrievalRunner, deps.llm);
+  const invokeRagAgent = createRagAgent(retrievalRunner, deps.llm, {
+    minSourceScore: env.ragMinSourceScore,
+  });
 
   const app = express();
   app.use(express.json());
@@ -40,11 +42,14 @@ function main(): void {
     res.json({ status: 'ok' });
   });
 
+  app.use(express.static('public'));
+
   app.listen(env.port, () => {
     console.log('RAG AI Agent');
     console.log('------------');
     console.log(`Server listening on http://localhost:${env.port}`);
-    console.log('  POST /upload  - upload PDF');
+    console.log('  GET  /       - frontend UI');
+    console.log('  POST /upload - upload PDF');
     console.log('  POST /chat   - send message, get RAG response');
     console.log('  GET  /health - health check');
   });

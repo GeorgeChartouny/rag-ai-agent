@@ -1,6 +1,6 @@
 /**
  * RAG agent: orchestrate retrieval + LLM generation.
- * Dependencies (retrievalRunner, llm) are injected.
+ * Dependencies (retrievalRunner, llm) and optional minSourceScore are injected.
  */
 import type { ILLM } from '../abstractions';
 import type { RetrievalRunner } from '../chains/retrievalChain';
@@ -12,10 +12,26 @@ export interface RagAgentResponse {
   sources?: Array<{ text: string; score?: number }>;
 }
 
+export interface RagAgentOptions {
+  minSourceScore?: number;
+}
+
+function filterRelevantSources(
+  chunks: Array<{ text: string; score?: number }>,
+  minScore: number
+): Array<{ text: string; score?: number }> {
+  return chunks.filter(
+    (c) => c.score != null && c.score >= minScore
+  );
+}
+
 export function createRagAgent(
   retrievalRunner: RetrievalRunner,
-  llm: ILLM
+  llm: ILLM,
+  options?: RagAgentOptions
 ): (query: string, topK?: number) => Promise<RagAgentResponse> {
+  const minSourceScore = options?.minSourceScore ?? 0.5;
+
   return async function invokeRagAgent(
     query: string,
     topK: number = 5
@@ -28,9 +44,13 @@ export function createRagAgent(
       { role: 'user' as const, content: userContent },
     ];
     const answer = await llm.generate(messages);
+    const sources = filterRelevantSources(
+      chunks.map((c) => ({ text: c.text, score: c.score })),
+      minSourceScore
+    );
     return {
       answer,
-      sources: chunks.map((c) => ({ text: c.text, score: c.score })),
+      sources: sources.length > 0 ? sources : undefined,
     };
   };
 }
